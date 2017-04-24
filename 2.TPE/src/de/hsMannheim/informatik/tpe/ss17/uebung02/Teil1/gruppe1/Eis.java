@@ -1,6 +1,6 @@
 package de.hsMannheim.informatik.tpe.ss17.uebung02.Teil1.gruppe1;
 
-public class Eis {wcwec
+public class Eis {
 	String name;
 	double preis;
 	String behaeltnis;

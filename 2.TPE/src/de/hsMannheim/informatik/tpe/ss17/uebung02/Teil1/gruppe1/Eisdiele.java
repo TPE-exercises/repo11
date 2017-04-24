@@ -1,5 +1,5 @@
 package de.hsMannheim.informatik.tpe.ss17.uebung02.Teil1.gruppe1;
-eded
+
 public class Eisdiele extends Eis{
 
 	Eisdiele(String name, String behaeltnis, String art, String[] sorte, String[] extra) {
