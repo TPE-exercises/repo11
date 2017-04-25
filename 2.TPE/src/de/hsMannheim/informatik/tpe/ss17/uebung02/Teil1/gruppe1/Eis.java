@@ -5,20 +5,20 @@ public class Eis {
 	double preis;
 	String behaeltnis;
 	String art;
-	String[] sorte = {"Vanille","Schoko","Muffin"};
-	String[] extra = {"Vanille", "Schoko"};
+	String[] sorte = {"Vanille","Schoko","Kokos"};
+	String[] extra = {"Sahne", "Soße"};
 	
 	/*
 	 *  Konstruktor eigentlich unnötig oder ?
 	 */
 
-		Eis(String name, String behaeltnis, String art, String[] sorte, String[] extra){
-			this.name = name;
-			this.behaeltnis = behaeltnis;
-			this.art = art;
-			this.sorte = sorte;
-			this.extra = extra;
-		}
+//		Eis(String name, String behaeltnis, String art, String[] sorte, String[] extra){
+//			this.name = name;
+//			this.behaeltnis = behaeltnis;
+//			this.art = art;
+//			this.sorte = sorte;
+//			this.extra = extra;
+//		}
 
 	String name(String name){
 		this.name = name;
@@ -52,15 +52,17 @@ public class Eis {
 	}
 	
 	void vorbereiten(){
-		System.out.println("Ihr " + this.behaeltnis + " wird vorbereitet!");
+		System.out.println("Ihr(e) " + this.behaeltnis + " wird vorbereitet!");
 		
 	}
 	
 	void fuellen(){
-		System.out.println("Ihr " + this.behaeltnis + " mit der Sorte " + this.sorte + " und der Art " + this.art + " gefüllt!");
+		System.out.println("Ihr " + this.behaeltnis + " mit der Sorte " + this.sorte + " und der Art " + this.art + " wird gefüllt!");
 	}
 	
 	void dekorieren(){
+		System.out.println("Ihr " + this.name + " wird dekoriert!");
+		
 		
 	}
 
