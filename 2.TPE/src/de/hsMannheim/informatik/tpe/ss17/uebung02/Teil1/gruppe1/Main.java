@@ -1,32 +1,21 @@
-package de.hsMannheim.informatik.tpe.ss17.uebung02.Teil1.gruppe1;
-
+package de.hsMannheim.informatik.tpe.ss17.uebung02.Teil2.gruppe1;
+import static gdi.MakeItSimple.*;
 public class Main {
 
+
 	public static void main(String[] args) {
-
-		String[] sorte = { "Vanille" };
-		
-		Eiskarte karte = new Eiskarte();
-		karte.karte();
-
-		Eisdiele eisbestellen = new Eisdiele();
-		
-		eisbestellen.behaeltnis("Waffel");
-		eisbestellen.sorten(sorte);
-		eisbestellen.art("Bälle");
-		eisbestellen.name("Spaghettieis");
-		
-		eisbestellen.vorbereiten();
-		eisbestellen.fuellen();
-		eisbestellen.dekorieren();
-		
-		eisbestellen.begruessen();
-		eisbestellen.bestellen("");
-		eisbestellen.kassieren();
-		eisbestellen.verabschieden();
-		
-		
+		CrypterCaesar my = new CrypterCaesar();
+		CrypterReverse my1 = new CrypterReverse();
+		System.out.println(my.encrypt("xyz"));
+	System.out.println(my1.decrypt("XHMSNYYXYJQQJS"));
+    System.out.println(my.decrypt(my1.decrypt("XHMSNYYXYJQQJS")));
+    System.out.println(my1.decrypt("nelletsttinhcs"));
 
 	}
+	
+	
 
 }
+
+	
+
