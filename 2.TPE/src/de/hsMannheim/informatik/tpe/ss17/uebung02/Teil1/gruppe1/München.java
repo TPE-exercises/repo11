@@ -1,41 +1,40 @@
 package de.hsMannheim.informatik.tpe.ss17.uebung02.Teil1.gruppe1;
-import java.util.*;
-public abstract class Eisdiele extends Eis{
 
+import java.util.Scanner;
+
+public class München extends Eisdiele{
+
+	String[] extra = {"Sahne", "Soße", "Brezle"};
+	String [] Eiskreationen = {"Spaghettieis","Bananasplitt", "Allianz Arena", "FCB", "Oktoberfest"};
 
 	void vorbereiten(){
-		System.out.println("Ihr Behältnis wird vorbereitet!");
+		System.out.println("Dein Behältnis kummt soford!");
  
 	}
 
 	void fuellen(){
-		System.out.println("Ihr Behältnis mit Ihrer gewünschten Sorte und der Art wird gefüllt!");
+		System.out.println("Dein Behältnis mit deiner gewönschten Sort' und Art wird gefülld!");
 	}
 
 	void dekorieren(){
-		System.out.println("Ihre Eiskreation wird mit Ihrem Extra dekoriert!");
-
+		System.out.println("Dei' Eiskreatio' wird mit Extra dekoriert!");
 
 	}
 
-
-
 	public void bestellen(String typ){
 		boolean nichtEnthalten ;
-		System.out.print("Welche Eiskreationen möchten Sie?");	
+		System.out.print("Wad willst für Sort' ?");	
 		nichtEnthalten = this.scanner(Eiskreationen);
 
 		if(nichtEnthalten == false){
-			System.out.print("Welches Behältnis möchten Sie?");
+			System.out.print("In was willsch dat?");
 			nichtEnthalten = this.scanner(Behältnis);
 			this.vorbereiten();
-
-
 		}
 		//	nichtEnthalten = this.scanner();
 
 		if(nichtEnthalten == false){
-			System.out.print("Welche Art möchten Sie?");
+			System.out.print("Welsche Ard?");
 			nichtEnthalten = this.scanner(Art);
 
 		}
@@ -43,13 +42,13 @@ public abstract class Eisdiele extends Eis{
 		//	nichtEnthalten = this.scanner();
 
 		if(nichtEnthalten == false){
-			System.out.print("Welche Sorte möchten Sie?");
+			System.out.print("Welche Sorte' willsch?");
 			nichtEnthalten = this.scanner(this.sorte);
 			this.fuellen();
 		}
 		//	nichtEnthalten = this.scanner();
 		if(nichtEnthalten == false){
-			System.out.print("Welche Extras möchten Sie?");
+			System.out.print("Was für Extra?");
 			nichtEnthalten = this.scanner(this.extra);
 			this.dekorieren();
 			System.out.println();
@@ -57,27 +56,27 @@ public abstract class Eisdiele extends Eis{
 
 		}
 
-		System.out.println("Lassen Sie sich ihr Eis schmecken!");
+		System.out.println("Gudden!");
 
 	}
 
 	void begruessen(){
-		System.out.println("Hallo!");
+		System.out.println("Grüß di'!");
 
 	}
 
 	void kassieren(){
-		System.out.println(this.preis + " € bitte!");
+		System.out.println(this.preis + " bidde!");
 
 
 	}
 
 	void verabschieden(){
-		System.out.println("Tschüss, auf Wiedersehen!");
+		System.out.println("Pfüadi!");
 	}
 
 	void entschuldigen(){
-		System.out.println("Tut mir leid, das haben wir leider nicht, was hätten Sie stattdessen gerne!");
+		System.out.println("Habe ma net, wad anderes?");
 
 	}
 	boolean scanner(String [] array){
@@ -105,7 +104,12 @@ public abstract class Eisdiele extends Eis{
 		return nichtEnthalten;	
 	}
 
-	public abstract Eis erstellen(String typ);
+	@Override
+	public Eis erstellen(String typ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
+
 

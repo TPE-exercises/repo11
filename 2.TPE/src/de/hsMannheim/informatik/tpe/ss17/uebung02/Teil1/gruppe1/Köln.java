@@ -1,11 +1,16 @@
 package de.hsMannheim.informatik.tpe.ss17.uebung02.Teil1.gruppe1;
-import java.util.*;
-public abstract class Eisdiele extends Eis{
+
+import java.util.Scanner;
+
+public class Köln extends Eisdiele{
+
+	String[] extra = {"Sahne", "Soße", "Bierteig"};
+	String [] Eiskreationen = {"Spaghettieis","Bananasplitt", "Dom", "FCK", "Museum Ludwig"};
 
 
 	void vorbereiten(){
 		System.out.println("Ihr Behältnis wird vorbereitet!");
- 
+
 	}
 
 	void fuellen(){
@@ -29,21 +34,19 @@ public abstract class Eisdiele extends Eis{
 			System.out.print("Welches Behältnis möchten Sie?");
 			nichtEnthalten = this.scanner(Behältnis);
 			this.vorbereiten();
-
-
 		}
 		//	nichtEnthalten = this.scanner();
 
 		if(nichtEnthalten == false){
-			System.out.print("Welche Art möchten Sie?");
+			System.out.print("Welche Art möchten Sie");
 			nichtEnthalten = this.scanner(Art);
-
+ 
 		}
 
 		//	nichtEnthalten = this.scanner();
 
 		if(nichtEnthalten == false){
-			System.out.print("Welche Sorte möchten Sie?");
+			System.out.print("Welche Sorten möchten Sie?");
 			nichtEnthalten = this.scanner(this.sorte);
 			this.fuellen();
 		}
@@ -62,7 +65,7 @@ public abstract class Eisdiele extends Eis{
 	}
 
 	void begruessen(){
-		System.out.println("Hallo!");
+		System.out.println("Daach zesamme!");
 
 	}
 
@@ -73,11 +76,11 @@ public abstract class Eisdiele extends Eis{
 	}
 
 	void verabschieden(){
-		System.out.println("Tschüss, auf Wiedersehen!");
+		System.out.println("Tschö!");
 	}
 
 	void entschuldigen(){
-		System.out.println("Tut mir leid, das haben wir leider nicht, was hätten Sie stattdessen gerne!");
+		System.out.println("Dat deit mer leid, habe ma ned, stattdess'?");
 
 	}
 	boolean scanner(String [] array){
@@ -105,7 +108,8 @@ public abstract class Eisdiele extends Eis{
 		return nichtEnthalten;	
 	}
 
-	public abstract Eis erstellen(String typ);
+	public Eis erstellen(String typ) {
+		return null;
+	}
 
 }
-
