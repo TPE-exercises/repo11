@@ -9,15 +9,20 @@ import java.util.*;
  */
 public class CaesarReader extends FilterReader {
 
+	String Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜäöü";
 	private int key;
+
 	/*
-	 * the construcktor create a object with a key 
-	 * and in (read from data)
+	 * the construcktor create a object with a key and in (read from data)
 	 * 
 	 */
 	public CaesarReader(Reader in, int key) {
 		super(in);
+		if (key < 0) {
+			key = Alphabet.length()+(key%Alphabet.length());
+		}
 		this.key = key;
+
 	}
 	/*
 	 * the method decrypt a string message
@@ -30,7 +35,7 @@ public class CaesarReader extends FilterReader {
 			throw new gdi.MISException("Der String ist leer");
 		}
 
-		String Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖUäöü";
+		
 
 		String newMessage = "";
 		int counter = 0;
@@ -45,14 +50,16 @@ public class CaesarReader extends FilterReader {
 					break;
 				}
 			}
-			if (index == 0) {
-				newMessage += Alphabet.charAt(index + Alphabet.length() - key);
-			} else if (index == 1) {
-				newMessage += Alphabet.charAt(index + Alphabet.length() - key);
-			} else if (index == 2) {
-				newMessage += Alphabet.charAt(index + Alphabet.length() - key);
+			int newIndex = ((index - key) % Alphabet.length());
+
+			if (newIndex < 0) {
+				int newpos = 0;
+				newpos = ((newIndex % Alphabet.length()) + Alphabet.length()) % Alphabet.length();
+				char letter = Alphabet.charAt(newpos);
+				newMessage += letter;
+
 			} else {
-				char letter = Alphabet.charAt(index - key);
+				char letter = Alphabet.charAt(newIndex);
 
 				newMessage += letter;
 			}
@@ -81,12 +88,11 @@ public class CaesarReader extends FilterReader {
 	// return newSign;
 	//
 	// }
-	
-	
+
 	/*
 	 * 
-	 * the method read put the string from the data in a char array
-	 * with offset and the string lenght
+	 * the method read put the string from the data in a char array with offset
+	 * and the string lenght
 	 * 
 	 */
 

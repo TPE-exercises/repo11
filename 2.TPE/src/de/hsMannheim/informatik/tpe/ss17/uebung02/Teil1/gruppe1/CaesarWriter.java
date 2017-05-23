@@ -3,34 +3,44 @@ package de.hsMannheim.informatik.tpe.ss17.uebung03.gruppe1;
 import java.io.*;
 
 import gdi.MakeItSimple.GDIException;
+
 /*
  * the class extends from filterwriter and encrypt a string messages
  */
+
 public class CaesarWriter extends FilterWriter {
+	
+	String Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzƒ÷‹‰ˆ¸";
 
 	private int key;
+
 	/*
-	 * the construcktor create a object with a key
-	 * and out (date)
+	 * the construcktor create a object with a key and out (date)
 	 * 
 	 */
 	public CaesarWriter(Writer out, int key) {
 		super(out);
+		if (key < 0) {
+			key = Alphabet.length()+(key%Alphabet.length());
+		}
 		this.key = key;
+
 	}
+
 	/*
-	 * encrypt the message 
+	 * encrypt the message
 	 * 
 	 */
 	public String encrypt(String message) throws IOException {
+		
+		
+		
 
 		if (message.length() == 0) {
 			throw new gdi.MISException("Der String ist leer");
 		}
 
 		
-
-		String Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzƒ÷‹‰ˆ¸";
 
 		String newMessage = "";
 		int counter = 0;
@@ -46,16 +56,15 @@ public class CaesarWriter extends FilterWriter {
 					break;
 				}
 			}
+
 			
-				if(index+key>=Alphabet.length()){
-					
-					newMessage += Alphabet.charAt(index - Alphabet.length() + key);
-				}else{
-				char letter = Alphabet.charAt(index + key);
-				
-				newMessage += letter;
-				}
 			
+			
+			int newIndex = ((index + key) % Alphabet.length());
+
+			char letter = Alphabet.charAt(newIndex);
+
+			newMessage += letter;
 
 			counter++;
 
@@ -72,6 +81,13 @@ public class CaesarWriter extends FilterWriter {
 
 		super.write(encrypt(message), offset, lenght);
 	}
+	public void write(String m) throws IOException{
+		
+		FileWriter o = new FileWriter("tpe3.txt");
+		String s=encrypt(m);
+		
+		o.write(encrypt(s));
+		o.close();
+	}
 
-	
 }
