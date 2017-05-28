@@ -1,9 +1,13 @@
 package de.hsMannheim.informatik.tpe.ss17.uebung04.gruppe1;
 
 public class Sorter {
-	
-public void sort(Comparable[] array,int low,int high) {
-		
+
+	public static int changes = 0;
+	public static int compare = 0;
+	public static int rekursion = 0;
+
+	public void sort(Comparable[] array, int low, int high) {
+
 		if (low < high) {
 			// Locate the most precise partition point
 			int mid = partition(array, low, high);
@@ -11,6 +15,7 @@ public void sort(Comparable[] array,int low,int high) {
 			sort(array, low, mid - 1);
 			// Recursively sort the upper half
 			sort(array, mid + 1, high);
+			rekursion++;
 		}
 	}
 
@@ -33,14 +38,16 @@ public void sort(Comparable[] array,int low,int high) {
 
 		while (left <= right) {
 			// Increment the low pointer until you meet the pivot
-			while (array[left].compareTo(pivot)<0) {
+			while (array[left].compareTo(pivot) < 0) {
 				++left;
+				compare++;
 			}
 			// Decrement the high pointer until you meet the pivot
-			while (array[right].compareTo(pivot)>0) {
+			while (array[right].compareTo(pivot) > 0) {
 				--right;
+				compare++;
 			}
-			 
+
 			// If the pointers have crossed, swap the items
 			if (left < right) {
 				// Swap value at left with value at right
@@ -68,6 +75,19 @@ public void sort(Comparable[] array,int low,int high) {
 		Comparable temp = array[first];
 		array[first] = array[second];
 		array[second] = temp;
+		changes++;
+	}
+
+	public static int getChange() {
+		return changes;
+	}
+
+	public static int getCompares() {
+		return compare;
+	}
+
+	public static int getRekursion() {
+		return rekursion;
 	}
 
 }

@@ -2,7 +2,7 @@ package de.hsMannheim.informatik.tpe.ss17.uebung04.gruppe1;
 
 public class QuickSortThread extends Thread{
 
-	 /** The back-reference to the class containing the sorting routine.*/
+	/** The back-reference to the class containing the sorting routine.*/
     Sorter sorter;
     /** The ID of this thread.*/
     int id;
@@ -12,12 +12,11 @@ public class QuickSortThread extends Thread{
     int high;
     /** The array to be sorted.*/
     Comparable[] array;
+    public static int threads =0;
+    public double time;
+    
 
-    /**
-     * Construct a new thread, giving it a class reference containing the sorting
-     * routine as well as the array to be sorted.
-     * 
-     * @param proj6 Pass the reference to the class containing necessary sorting routine.
+   /**
      * @param id The ID of this thread.
      * @param low The lowest index this thread goes in the array.
      * @param high The highest index this thread goes in the array.
@@ -30,6 +29,7 @@ public class QuickSortThread extends Thread{
         this.low = low;
         this.high = high;
         this.array = array;
+        threads++;
     }
 
     /**
@@ -39,10 +39,21 @@ public class QuickSortThread extends Thread{
     @Override
     public void run()
     {
-    	//System.out.println("Thread "+id+" gestartet");
+    	System.out.println("Thread "+id+" gestartet");
+    	double startTime = System.currentTimeMillis();
     	
         sorter.sort(array, low, high);
-        
+       
+        double endTime = System.currentTimeMillis();
+        double time = endTime-startTime;
+        this.time=time;
 
  }
-}
+    public int getThreads(){
+    	return threads;
+    }
+    public double getTime(){
+    	return time;
+    }
+ }
+
