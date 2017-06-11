@@ -1,23 +1,39 @@
 package de.hsMannheim.informatik.tpe.ss17.uebung04.gruppe1;
 
+/**
+ * Erzeugung eines Ringpuffers mit einer beliebigen Größe Die Größe wird durch
+ * den Konstruktor bestimmt
+ * 
+ * @author repo11
+ *
+ */
 public class Ringpuffer extends Thread {
 
-	boolean leer = true;
 	private Object array[];
 	private int pointer;
 	private int counter;
 
 	public Ringpuffer(int size) {
-
+		if(size< 0){
+			size=size*-1;
+		}
 		array = new Object[size];
 		pointer = size + 1;
 		counter = 0;
+		
 	}
 
+	/**
+	 * Methode um Object Elmente hineinzufügen
+	 * 
+	 * @param element
+	 *            Element welches hinzugefügt wird
+	 * @throws InterruptedException
+	 */
 	synchronized public void put(Object element) throws InterruptedException {
 		pointer--;
 		while (array[0] != null) {
-			 System.out.println("Ringpuffer ist voll" );
+			// System.out.println("Ringpuffer ist voll" );
 			wait();
 		}
 
@@ -32,10 +48,16 @@ public class Ringpuffer extends Thread {
 
 	}
 
+	/**
+	 * Methode um ein Object element zu entfernen
+	 * 
+	 * @return das entfernte element
+	 * @throws InterruptedException
+	 */
 	synchronized public Object get() throws InterruptedException {
 		Object element = 0;
 		while (array[array.length - 1] == null) {
-			 System.out.println("Kein element im Ringpuffer");
+			// System.out.println("Kein element im Ringpuffer");
 			wait();
 		}
 
@@ -44,7 +66,7 @@ public class Ringpuffer extends Thread {
 
 		Object newArray[] = new Object[array.length];
 		int c = counter;
-		for (int i = pointer; i < array.length; i++, c++) {
+		for (int i = pointer; i < array.length && c < array.length; i++, c++) {
 			newArray[i] = array[c];
 		}
 		array = newArray;
@@ -55,6 +77,9 @@ public class Ringpuffer extends Thread {
 		return element;
 	}
 
+	/**
+	 * methode um ein Array zu printen
+	 */
 	void printArray() {
 		for (int i = 0; i < array.length; i++) {
 			System.out.print(" , " + array[i]);
@@ -63,8 +88,20 @@ public class Ringpuffer extends Thread {
 
 	}
 
+	/**
+	 * testet ob es leer ist
+	 * 
+	 * @return boolean
+	 */
 	boolean isEmpty() {
 		return array[array.length - 1] == null;
 	}
 
+	/**
+	 * 
+	 * @return Object []
+	 */
+	Object[] getArray() {
+		return array;
+	}
 }
