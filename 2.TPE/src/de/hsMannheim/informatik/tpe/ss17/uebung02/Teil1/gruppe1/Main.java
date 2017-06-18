@@ -25,7 +25,7 @@ public class Main {
 		sortAlphabetical(cuttedList);
 
 		long endtime = System.currentTimeMillis() - starttime;
-      
+
 		printList(cuttedList);
 
 		System.out.println(endtime + "millisekunden");
@@ -45,10 +45,6 @@ public class Main {
 		}
 	}
 
-	/**
-	 * put the words and the numbers in a List
-	 * 
-	 */
 	public static List<NumberOfWords> loadMapIntoList(Map<String, Integer> map) {
 		List<NumberOfWords> list = new LinkedList<>();
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
@@ -58,10 +54,6 @@ public class Main {
 
 	}
 
-	/**
-	 * Sorts the List alphabetical
-	 * 
-	 */
 	public static void sortAlphabetical(List<NumberOfWords> list) {
 		Collections.sort(list, new Comparator<NumberOfWords>() {
 
