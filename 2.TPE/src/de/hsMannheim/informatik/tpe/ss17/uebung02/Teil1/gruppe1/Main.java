@@ -1,49 +1,74 @@
-package MyUtil;
+package aufgabe5nr3;
+
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
-	
-	public static void main(String []args) throws OverflowException, UnderflowException{
-		StackImplements obj = new StackImplements(2);
-		StackListImplements obj2 = new StackListImplements(3);
-		QueueImplements obj3 = new QueueImplements(1);
-		QueueLinkedList obj4 = new QueueLinkedList(3);
-		obj3.enter(3);
-		obj3.enter(2);
-		obj3.enter(1);
-		System.out.println(obj3.printElements());
-//		obj4.enter(0);
 
-		
+	public static void main(String[] args) throws IOException {
+		Path txtfile = FileSystems.getDefault().getPath("Bibel.txt");
 
-	
-//		obj4.leave();
-//		System.out.println(obj3.printElements());
-//		obj.push(3);
-//		obj.push(2);
-		System.out.println(obj4.printElements());
-//		obj.push(new String("a"));
-//		obj.push(new String("b"));
-//		obj.push(new String("c"));
-//		obj.push("d");
-//		obj2.push(4);
-//		obj2.push(3);
-//		obj2.push(2);
-//		Object o []= new Object[10];
-//		for (int i = 0; i < o.length; i++) {
-//			o[i]= i;		
-//			}
-//		for (int i = 0; i < o.length; i++) {
-//			System.out.println(o[i]);
-//		}
-//		
-//		obj.pop();
-//		obj.top();
-//		System.out.println(obj2.printElements());
-//		System.out.println(obj.elements[1]);
-//		System.out.println(obj3.printElements());
-	
-		
-		
+		long starttime = System.currentTimeMillis();
+		Map<String, Integer> wordmap = new ReadWords(txtfile).getWords();
+		List<NumberOfWords> sortedWords = loadMapIntoList(wordmap);
+
+		Collections.sort(sortedWords, Collections.reverseOrder());
+
+		List<NumberOfWords> cuttedList = cutList(sortedWords, 100);
+
+		sortAlphabetical(cuttedList);
+
+		long endtime = System.currentTimeMillis() - starttime;
+      
+		printList(cuttedList);
+
+		System.out.println(endtime + "millisekunden");
+
 	}
-	
+
+	public static List<NumberOfWords> cutList(List<NumberOfWords> list, int size) {
+		if (list.size() > size) {
+			return list = list.subList(0, size);
+		}
+		return list;
+	}
+
+	public static void printList(List<NumberOfWords> list) {
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(i + 1 + ". " + list.get(i).getWord() + ": " + list.get(i).getQuantity());
+		}
+	}
+
+	/**
+	 * put the words and the numbers in a List
+	 * 
+	 */
+	public static List<NumberOfWords> loadMapIntoList(Map<String, Integer> map) {
+		List<NumberOfWords> list = new LinkedList<>();
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			list.add(new NumberOfWords(entry.getKey(), entry.getValue()));
+		}
+		return list;
+
+	}
+
+	/**
+	 * Sorts the List alphabetical
+	 * 
+	 */
+	public static void sortAlphabetical(List<NumberOfWords> list) {
+		Collections.sort(list, new Comparator<NumberOfWords>() {
+
+			public int compare(final NumberOfWords object1, final NumberOfWords object2) {
+				return object1.getWord().compareTo(object2.getWord());
+			}
+		});
+
+	}
 }
